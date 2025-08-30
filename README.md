@@ -122,8 +122,8 @@ After scanning, results are written to:
 
 | Platform | File Name                          |
 |----------|-------------------------------------|
-| Linux    | [PHPUnit_GoScan_amd64_linux](https://github.com/drcrypterdotru/PHPUnit-GoScan/blob/main/PHPUnit_GoScan_amd64_linux) |
-| Windows  | [PHPUnit_GoScan_amd64_windows.exe](https://github.com/drcrypterdotru/PHPUnit-GoScan/blob/main/PHPUnit_GoScan_amd64_windows.exe) |
+| Linux    | [PHPUnit_GoScan_amd64_linux](https://github.com/drcrypterdotru/PHPUnit-GoScan/releases/download/v1.0.0/PHPUnit_GoScan_amd64_linux) |
+| Windows  | [PHPUnit_GoScan_amd64_windows.exe](https://github.com/drcrypterdotru/PHPUnit-GoScan/releases/download/v1.0.0/PHPUnit_GoScan_amd64_windows.exe) |
 
 > 🛠 On Linux:  
 > Run `chmod +x PHPUnit_GoScan_amd64_linux` before executing.
